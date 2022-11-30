@@ -19,23 +19,25 @@ pub fn parse_into_struct<T>(data: Vec<String>, parser: fn(String) -> T) -> Vec<T
     for line in data {
         result.push(parser(line));
     }
-    return result;
+    result
 }
 
+// Reads through a vector of lines while not matching a specific regex
 pub fn parse_until_pattern(data: Vec<String>, pattern: &str) -> (Vec<String>, Vec<String>) {
     let Ok(re) = Regex::new(pattern) else {
         panic!("Could not parse pattern {pattern} at parse_until_pattern");
     };
     let mut index = 0;
     for line in &data {
-        if re.is_match(&line) {
+        if re.is_match(line) {
             break;
         }
         index += 1;
     }
-    return (data[0..index].to_vec(), data[index..].to_vec());
+    (data[0..index].to_vec(), data[index..].to_vec())
 }
 
+#[cfg(test)]
 mod tests {
     use insta::assert_snapshot;
     use super::*;
@@ -62,7 +64,7 @@ mod tests {
     fn test_parse_into_struct() {
         let data = vec!["1,2".to_string(), "3,4".to_string()];
         let result = parse_into_struct(data, |s| {
-            let split: Vec<&str> = s.split(",").collect();
+            let split: Vec<&str> = s.split(',').collect();
             TestStruct {
                 a: split[0].to_string(),
                 b: split[1].to_string(),
