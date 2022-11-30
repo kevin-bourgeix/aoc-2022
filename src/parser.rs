@@ -39,8 +39,8 @@ pub fn parse_until_pattern(data: Vec<String>, pattern: &str) -> (Vec<String>, Ve
 
 #[cfg(test)]
 mod tests {
-    use insta::assert_snapshot;
     use super::*;
+    use insta::assert_snapshot;
 
     #[derive(Debug)]
     struct TestStruct {
@@ -76,9 +76,12 @@ mod tests {
 
     #[test]
     fn test_parse_until() {
-        let data = vec!["aaaa", "aaaa", "aaaa", "bbbb", "bbbb", "cccc"].iter().map(|s| s.to_string()).collect();
+        let data = vec!["aaaa", "aaaa", "aaaa", "bbbb", "bbbb", "cccc"]
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
         let (first, second) = parse_until_pattern(data, "bbbb");
-        
+
         insta::assert_debug_snapshot!(vec![first, second]);
     }
 }
