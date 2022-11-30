@@ -33,13 +33,3 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: test
-  lint:
-    runs-on: ubuntu-latest
-    name: Check linting
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Check linting
-        run: |
-          npm i
-          npm run lint
