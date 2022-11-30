@@ -1,0 +1,16 @@
+---
+source: src/parser.rs
+expression: "vec![first, second]"
+---
+[
+    [
+        "aaaa",
+        "aaaa",
+        "aaaa",
+    ],
+    [
+        "bbbb",
+        "bbbb",
+        "cccc",
+    ],
+]
