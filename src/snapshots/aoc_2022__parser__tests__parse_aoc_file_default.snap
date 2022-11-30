@@ -1,0 +1,9 @@
+---
+source: src/parser.rs
+expression: data
+---
+[
+    "4242",
+    "420",
+    "1234",
+]

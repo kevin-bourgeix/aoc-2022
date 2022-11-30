@@ -1,0 +1,14 @@
+---
+source: src/parser.rs
+expression: result
+---
+[
+    TestStruct {
+        a: "1",
+        b: "2",
+    },
+    TestStruct {
+        a: "3",
+        b: "4",
+    },
+]
