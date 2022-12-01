@@ -61,6 +61,12 @@ mod tests {
     }
 
     #[test]
+    fn test_parse_aoc_file_with_blank() {
+        let data = parse_aoc_file("./src/tests/numbers3.txt", None);
+        insta::assert_debug_snapshot!(data);
+    }
+
+    #[test]
     fn test_parse_into_struct() {
         let data = vec!["1,2".to_string(), "3,4".to_string()];
         let result = parse_into_struct(data, |s| {
@@ -75,12 +81,31 @@ mod tests {
     }
 
     #[test]
+    fn test_parse_into_simple() {
+        let data = vec!["1".to_string(), "2".to_string()];
+        let result = parse_into_struct(data, |s| s.parse::<i32>().unwrap());
+
+        insta::assert_debug_snapshot!(result);
+    }
+
+    #[test]
     fn test_parse_until() {
         let data = vec!["aaaa", "aaaa", "aaaa", "bbbb", "bbbb", "cccc"]
             .iter()
             .map(|s| s.to_string())
             .collect();
         let (first, second) = parse_until_pattern(data, "bbbb");
+
+        insta::assert_debug_snapshot!(vec![first, second]);
+    }
+
+    #[test]
+    fn test_parse_empty() {
+        let data = vec!["1", "", "2", "3"]
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+        let (first, second) = parse_until_pattern(data, r"^$");
 
         insta::assert_debug_snapshot!(vec![first, second]);
     }
