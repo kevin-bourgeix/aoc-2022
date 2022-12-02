@@ -50,7 +50,7 @@ fn get_shifumi_strategy(opp: &Shifumi, letter: char) -> Shifumi {
 pub fn day_2_1(filename: &str) -> i32 {
   let games = parse_aoc_file(filename, None);
   let scores = parse_into_struct(games, |l| {
-    let opp = l.chars().nth(0).unwrap_or_else(|| panic!("Unable to get 1st char at {l}"));
+    let opp = l.chars().next().unwrap_or_else(|| panic!("Unable to get 1st char at {l}"));
     let you = l.chars().nth(2).unwrap_or_else(|| panic!("Unable to get 2nd char at {l}"));
 
     let opp_shifumi = convert_to_shifumi(opp);
@@ -65,7 +65,7 @@ pub fn day_2_1(filename: &str) -> i32 {
 pub fn day_2_2(filename: &str) -> i32 {
   let games = parse_aoc_file(filename, None);
   let scores = parse_into_struct(games, |l| {
-    let opp = l.chars().nth(0).unwrap_or_else(|| panic!("Unable to get 1st char at {l}"));
+    let opp = l.chars().next().unwrap_or_else(|| panic!("Unable to get 1st char at {l}"));
     let you = l.chars().nth(2).unwrap_or_else(|| panic!("Unable to get 2nd char at {l}"));
 
     let opp_shifumi = convert_to_shifumi(opp);
