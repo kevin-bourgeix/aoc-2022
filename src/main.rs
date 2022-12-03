@@ -1,3 +1,5 @@
+#![feature(slice_as_chunks)]
+
 mod exercises;
 mod parser;
 
@@ -17,4 +19,12 @@ fn main() {
     // Day 2.2
     let day2_2 = exercises::day2::day_2_2("./src/files/day2");
     println!("Day 2.2 : {day2_2}");
+
+    // Day 3.1
+    let day3_1 = exercises::day3::day_3_1("./src/files/day3");
+    println!("Day 3.1: {day3_1}");
+
+    // Day 3.2
+    let day3_2 = exercises::day3::day_3_2("./src/files/day3");
+    println!("Day 3.2: {day3_2}");
 }
