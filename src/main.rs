@@ -27,4 +27,12 @@ fn main() {
     // Day 3.2
     let day3_2 = exercises::day3::day_3_2("./src/files/day3");
     println!("Day 3.2: {day3_2}");
+
+    // Day 4.1
+    let day4_1 = exercises::day4::day_4_1("./src/files/day4");
+    println!("Day 4.1: {day4_1}");
+
+    // Day 4.2
+    let day4_2 = exercises::day4::day_4_2("./src/files/day4");
+    println!("Day 4.2: {day4_2}");
 }
