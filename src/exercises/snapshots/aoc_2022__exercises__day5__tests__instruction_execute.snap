@@ -1,0 +1,11 @@
+---
+source: src/exercises/day5.rs
+assertion_line: 141
+expression: stacks
+---
+[
+    [],
+    [
+        'a',
+    ],
+]
