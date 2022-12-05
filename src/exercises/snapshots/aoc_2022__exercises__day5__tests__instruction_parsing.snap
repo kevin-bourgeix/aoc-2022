@@ -1,0 +1,10 @@
+---
+source: src/exercises/day5.rs
+assertion_line: 132
+expression: instruction
+---
+Instruction {
+    number: 1,
+    from: 0,
+    to: 1,
+}

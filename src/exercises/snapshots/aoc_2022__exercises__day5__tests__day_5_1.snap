@@ -1,0 +1,10 @@
+---
+source: src/exercises/day5.rs
+assertion_line: 155
+expression: result
+---
+[
+    'C',
+    'M',
+    'Z',
+]
