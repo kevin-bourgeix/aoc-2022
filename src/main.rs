@@ -51,4 +51,12 @@ fn main() {
         print!("{c}");
     }
     println!();
+
+    // Day 6.1
+    let day6_1 = exercises::day6::day_6_1("./src/files/day6");
+    println!("Day 6.1: {}", day6_1.first().unwrap());
+
+    // Day 6.2
+    let day6_2 = exercises::day6::day_6_2("./src/files/day6");
+    println!("Day 6.2: {}", day6_2.first().unwrap());
 }
