@@ -43,7 +43,6 @@ pub fn day_6_1(filename: &str) -> Vec<u32> {
                 break;
             };
                 if !has_multiple_char_occ(substring) {
-                    i += 0;
                     break;
                 }
                 i += 1;
