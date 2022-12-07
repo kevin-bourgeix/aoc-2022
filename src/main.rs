@@ -62,9 +62,9 @@ fn main() {
 
     // Day 7.1
     let day7_1 = exercises::day7::day_7_1("./src/files/day7");
-    println!("Day 7.1: {}", day7_1);
+    println!("Day 7.1: {day7_1}");
 
     // Day 7.2
     let day7_2 = exercises::day7::day_7_2("./src/files/day7");
-    println!("Day 7.2: {}", day7_2);
+    println!("Day 7.2: {day7_2}");
 }

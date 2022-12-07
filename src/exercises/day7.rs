@@ -79,7 +79,7 @@ fn compute_dir_size(directory: &Directory, all: &Vec<Directory>) -> u32 {
             .iter()
             .map(|s| {
                 let Some(dir) = all.iter().find(|d| d.path == *s) else {
-            panic!("Could not find directory {:?}", s);
+            panic!("Could not find directory {s:?}");
         };
                 compute_dir_size(dir, all)
             })
