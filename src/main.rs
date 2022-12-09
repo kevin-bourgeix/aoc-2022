@@ -75,4 +75,12 @@ fn main() {
     // Day 8.2
     let day8_2 = exercises::day8::day_8_2("./src/files/day8", 99);
     println!("Day 8.2: {day8_2}");
+
+    // Day 9.1
+    let day9_1 = exercises::day9::day_9_1("./src/files/day9");
+    println!("Day 9.1: {day9_1}");
+
+    // Day 9.2
+    let day9_2 = exercises::day9::day_9_2("./src/files/day9", 10);
+    println!("Day 9.2: {day9_2}");
 }
