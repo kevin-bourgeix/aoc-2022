@@ -83,4 +83,23 @@ fn main() {
     // Day 9.2
     let day9_2 = exercises::day9::day_9_2("./src/files/day9", 10);
     println!("Day 9.2: {day9_2}");
+
+    // Day 10.1
+    let day10_1 = exercises::day10::day_10_1("./src/files/day10");
+    println!("Day 10.1: {day10_1}");
+
+    // Day 10.2
+    let day10_2 = exercises::day10::day_10_2("./src/files/day10");
+    println!("Day 10.2:");
+    for i in day10_2 {
+        for j in i {
+            if j {
+                print!("#")
+            } else {
+                print!(".")
+            }
+        }
+        println!();
+    }
+    println!();
 }
