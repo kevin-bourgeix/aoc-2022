@@ -1,6 +1,6 @@
 ---
 source: src/exercises/day11.rs
-assertion_line: 139
+assertion_line: 209
 expression: monkeys
 ---
 [
@@ -17,6 +17,7 @@ expression: monkeys
         test_divisible_by: 23,
         true_monkey: 2,
         false_monkey: 3,
+        inspected: 0,
     },
     Monkey {
         items: [
@@ -33,6 +34,7 @@ expression: monkeys
         test_divisible_by: 19,
         true_monkey: 2,
         false_monkey: 0,
+        inspected: 0,
     },
     Monkey {
         items: [
@@ -46,6 +48,7 @@ expression: monkeys
         test_divisible_by: 13,
         true_monkey: 1,
         false_monkey: 3,
+        inspected: 0,
     },
     Monkey {
         items: [
@@ -59,5 +62,6 @@ expression: monkeys
         test_divisible_by: 17,
         true_monkey: 0,
         false_monkey: 1,
+        inspected: 0,
     },
 ]
