@@ -4,8 +4,8 @@ use regex::Regex;
 
 use crate::parser::parse_aoc_file;
 
-type NumberSize = u64;
-type UnsignedNumberSize = i64;
+type Number = u64;
+type UnsignedNumber = i64;
 
 #[derive(Debug, Clone, Copy)]
 enum Operation {
@@ -16,26 +16,26 @@ enum Operation {
 #[derive(Debug, Clone, Copy)]
 enum OperationValue {
     Old,
-    Number(NumberSize),
+    Number(Number),
 }
 
 #[derive(Debug, Clone)]
 struct Monkey {
-    items: Vec<NumberSize>,
+    items: Vec<Number>,
     operation: Operation,
-    test_divisible_by: NumberSize,
-    true_monkey: NumberSize,
-    false_monkey: NumberSize,
-    pub inspected: NumberSize,
+    test_divisible_by: Number,
+    true_monkey: Number,
+    false_monkey: Number,
+    pub inspected: Number,
 }
 
 impl Monkey {
     fn new(
-        items: Vec<NumberSize>,
+        items: Vec<Number>,
         operation: Operation,
-        test_divisible_by: NumberSize,
-        true_monkey: NumberSize,
-        false_monkey: NumberSize,
+        test_divisible_by: Number,
+        true_monkey: Number,
+        false_monkey: Number,
     ) -> Monkey {
         Monkey {
             items,
@@ -51,18 +51,14 @@ impl Monkey {
         !self.items.is_empty()
     }
 
-    fn push_item(&mut self, item: NumberSize) {
+    fn push_item(&mut self, item: Number) {
         self.items.push(item);
     }
 
     // Total mod is the product of all divisible check we'll do in the problem
     // This allows to keep the worry as a low number without losing the divisibility properties
     // It uses : (a mod kn) mod n = a mod n
-    fn inspect(
-        &mut self,
-        worry_divider: Option<NumberSize>,
-        total_mod: NumberSize,
-    ) -> (NumberSize, NumberSize) {
+    fn inspect(&mut self, worry_divider: Option<Number>, total_mod: Number) -> (Number, Number) {
         self.inspected += 1;
         self.items.reverse();
         let Some(item) = self.items.pop() else {
@@ -111,10 +107,10 @@ fn parse_file(filename: &str) -> Vec<Monkey> {
                 .as_str()
                 .split(", ")
                 .map(|s| {
-                    s.parse::<NumberSize>()
+                    s.parse::<Number>()
                         .unwrap_or_else(|_| panic!("Can't parse number {s} in items list"))
                 })
-                .collect::<Vec<NumberSize>>();
+                .collect::<Vec<Number>>();
             let operation_value = match captures
                 .get(3)
                 .unwrap_or_else(|| panic!("Can't read operation value from {r}"))
@@ -126,7 +122,7 @@ fn parse_file(filename: &str) -> Vec<Monkey> {
                         .get(3)
                         .unwrap_or_else(|| panic!("Can't read operation number from {r}"))
                         .as_str()
-                        .parse::<NumberSize>()
+                        .parse::<Number>()
                         .unwrap_or_else(|_| panic!("Can't parse operation number from {r}")),
                 ),
             };
@@ -143,19 +139,19 @@ fn parse_file(filename: &str) -> Vec<Monkey> {
                 .get(4)
                 .unwrap_or_else(|| panic!("Can't read divisble_by from {r}"))
                 .as_str()
-                .parse::<NumberSize>()
+                .parse::<Number>()
                 .unwrap();
             let true_monkey = captures
                 .get(5)
                 .unwrap_or_else(|| panic!("Can't read if true number from {r}"))
                 .as_str()
-                .parse::<NumberSize>()
+                .parse::<Number>()
                 .unwrap();
             let false_monkey = captures
                 .get(6)
                 .unwrap_or_else(|| panic!("Can't read if false number from {r}"))
                 .as_str()
-                .parse::<NumberSize>()
+                .parse::<Number>()
                 .unwrap();
 
             Monkey::new(
@@ -171,9 +167,9 @@ fn parse_file(filename: &str) -> Vec<Monkey> {
 
 fn compute_monkeys(
     monkeys: &mut Vec<Monkey>,
-    rounds: NumberSize,
-    worry_divider: Option<NumberSize>,
-) -> NumberSize {
+    rounds: Number,
+    worry_divider: Option<Number>,
+) -> Number {
     let total_mod = monkeys.iter().fold(1, |acc, m| acc * m.test_divisible_by);
 
     for _ in 0..rounds {
@@ -185,16 +181,16 @@ fn compute_monkeys(
         }
     }
 
-    monkeys.sort_by_key(|m| 0 - m.inspected as UnsignedNumberSize);
+    monkeys.sort_by_key(|m| 0 - m.inspected as UnsignedNumber);
     monkeys[0].inspected * monkeys[1].inspected
 }
 
-pub fn day_11_1(filename: &str) -> NumberSize {
+pub fn day_11_1(filename: &str) -> Number {
     let mut monkeys = parse_file(filename);
     compute_monkeys(&mut monkeys, 20, None)
 }
 
-pub fn day_11_2(filename: &str) -> NumberSize {
+pub fn day_11_2(filename: &str) -> Number {
     let mut monkeys = parse_file(filename);
     compute_monkeys(&mut monkeys, 10000, Some(1))
 }
