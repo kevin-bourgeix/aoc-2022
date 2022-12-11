@@ -20,12 +20,6 @@ enum OperationValue {
 }
 
 #[derive(Debug, Clone)]
-struct Item {
-    multiplication: Vec<NumberSize>,
-    additions: Vec<NumberSize>,
-}
-
-#[derive(Debug, Clone)]
 struct Monkey {
     items: Vec<NumberSize>,
     operation: Operation,
@@ -61,7 +55,14 @@ impl Monkey {
         self.items.push(item);
     }
 
-    fn inspect(&mut self, worry_divider: Option<NumberSize>) -> (NumberSize, NumberSize) {
+    // Total mod is the product of all divisible check we'll do in the problem
+    // This allows to keep the worry as a low number without losing the divisibility properties
+    // It uses : (a mod kn) mod n = a mod n
+    fn inspect(
+        &mut self,
+        worry_divider: Option<NumberSize>,
+        total_mod: NumberSize,
+    ) -> (NumberSize, NumberSize) {
         self.inspected += 1;
         self.items.reverse();
         let Some(item) = self.items.pop() else {
@@ -69,7 +70,7 @@ impl Monkey {
         };
         self.items.reverse();
         let divider = worry_divider.unwrap_or(3);
-        let worry = match self.operation {
+        let mut worry = match self.operation {
             Operation::Add(v) => match v {
                 OperationValue::Old => item * 2,
                 OperationValue::Number(n) => item + n,
@@ -79,6 +80,7 @@ impl Monkey {
                 OperationValue::Number(n) => item * n,
             },
         } / divider;
+        worry %= total_mod;
         if worry % self.test_divisible_by == 0 {
             (worry, self.true_monkey)
         } else {
@@ -167,11 +169,17 @@ fn parse_file(filename: &str) -> Vec<Monkey> {
         .collect()
 }
 
-fn compute_monkeys(monkeys: &mut Vec<Monkey>, rounds: NumberSize, worry_divider: Option<NumberSize>) -> NumberSize {
+fn compute_monkeys(
+    monkeys: &mut Vec<Monkey>,
+    rounds: NumberSize,
+    worry_divider: Option<NumberSize>,
+) -> NumberSize {
+    let total_mod = monkeys.iter().fold(1, |acc, m| acc * m.test_divisible_by);
+
     for _ in 0..rounds {
         for i in 0..monkeys.len() {
             while monkeys[i].has_items() {
-                let (worry, index) = monkeys[i].inspect(worry_divider);
+                let (worry, index) = monkeys[i].inspect(worry_divider, total_mod);
                 monkeys[index as usize].push_item(worry);
             }
         }
@@ -195,7 +203,7 @@ pub fn day_11_2(filename: &str) -> NumberSize {
 mod tests {
     use insta::assert_debug_snapshot;
 
-    use crate::exercises::day11::{parse_file, compute_monkeys, day_11_2};
+    use crate::exercises::day11::{compute_monkeys, day_11_2, parse_file};
 
     use super::day_11_1;
 
@@ -207,13 +215,13 @@ mod tests {
 
     #[test]
     fn test_day_11_1() {
-        let mut monkeys = day_11_1("src/files/day11_1.test");
+        let monkeys = day_11_1("src/files/day11_1.test");
         assert_eq!(monkeys, 10605);
     }
 
     #[test]
     fn test_day_11_2() {
-        let mut monkeys = day_11_2("src/files/day11_1.test");
+        let monkeys = day_11_2("src/files/day11_1.test");
         assert_eq!(monkeys, 2713310158);
     }
 }
