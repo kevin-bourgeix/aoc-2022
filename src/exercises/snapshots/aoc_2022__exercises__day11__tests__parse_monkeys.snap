@@ -1,0 +1,63 @@
+---
+source: src/exercises/day11.rs
+assertion_line: 139
+expression: monkeys
+---
+[
+    Monkey {
+        items: [
+            79,
+            98,
+        ],
+        operation: Mul(
+            Number(
+                19,
+            ),
+        ),
+        test_divisible_by: 23,
+        true_monkey: 2,
+        false_monkey: 3,
+    },
+    Monkey {
+        items: [
+            54,
+            65,
+            75,
+            74,
+        ],
+        operation: Add(
+            Number(
+                6,
+            ),
+        ),
+        test_divisible_by: 19,
+        true_monkey: 2,
+        false_monkey: 0,
+    },
+    Monkey {
+        items: [
+            79,
+            60,
+            97,
+        ],
+        operation: Mul(
+            Old,
+        ),
+        test_divisible_by: 13,
+        true_monkey: 1,
+        false_monkey: 3,
+    },
+    Monkey {
+        items: [
+            74,
+        ],
+        operation: Add(
+            Number(
+                3,
+            ),
+        ),
+        test_divisible_by: 17,
+        true_monkey: 0,
+        false_monkey: 1,
+    },
+]

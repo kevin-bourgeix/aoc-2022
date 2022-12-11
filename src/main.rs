@@ -102,4 +102,8 @@ fn main() {
         println!();
     }
     println!();
+
+    // Day 11.1
+    let day11_1 = exercises::day11::day_11_1("./src/files/day11");
+    println!("Day 11.1: {day11_1}");
 }
