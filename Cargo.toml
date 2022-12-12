@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 regex = "1.7.0"
 insta = "1.21.2"
+pathfinding = "4.0.0"

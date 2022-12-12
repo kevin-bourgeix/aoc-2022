@@ -110,4 +110,12 @@ fn main() {
     // Day 11.2
     let day11_2 = exercises::day11::day_11_2("./src/files/day11");
     println!("Day 11.2: {day11_2}");
+
+    // Day 12.1
+    let day12_1 = exercises::day12::day_12_1("./src/files/day12") - 2;
+    println!("Day 12.1: {day12_1}");
+
+    // Day 12.2
+    let day12_2 = exercises::day12::day_12_2("./src/files/day12") - 2;
+    println!("Day 12.2: {day12_2}");
 }
