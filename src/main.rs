@@ -123,6 +123,7 @@ fn main() {
         let day12_2 = exercises::day12::day_12_2("./src/files/day12") - 2;
         println!("Day 12.2: {day12_2}");
     }
+    
     // Day 13.1
     let day13_1 = exercises::day13::day_13_1("./src/files/day13");
     println!("Day 13.1: {day13_1}");

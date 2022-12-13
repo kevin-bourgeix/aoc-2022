@@ -152,6 +152,7 @@ pub fn day_13_2(filename: &str) -> i32 {
         .map(|l| Packet::from_vec(parse_line(l.clone())).first())
         .collect();
     packets.sort();
+
     let (div_x, div_y) = packets
         .iter()
         .enumerate()
@@ -167,6 +168,7 @@ pub fn day_13_2(filename: &str) -> i32 {
             }
             (x, y)
         });
+        
     div_x * div_y
 }
 
