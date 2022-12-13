@@ -168,7 +168,7 @@ pub fn day_13_2(filename: &str) -> i32 {
             }
             (x, y)
         });
-        
+
     div_x * div_y
 }
 
